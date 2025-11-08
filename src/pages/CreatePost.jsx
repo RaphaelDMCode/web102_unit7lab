@@ -2,17 +2,6 @@ import { useState } from 'react'
 import { supabase } from '../client'
 import './CreatePost.css'
 
-const createPost = async (event) => {
-  event.preventDefault();
-
-  await supabase
-    .from('Posts')
-    .insert({title: post.title, author: post.author, description: post.description})
-    .select();
-
-  window.location = "/";
-}
-
 const CreatePost = () => {
 
     const [post, setPost] = useState({title: "", author: "", description: ""})
@@ -26,6 +15,18 @@ const CreatePost = () => {
             }
         })
     }
+
+    const createPost = async (event) => {
+    event.preventDefault();
+
+    await supabase
+        .from('Posts')
+        .insert({title: post.title, author: post.author, description: post.description})
+        .select();
+
+    window.location = "/";
+    }
+
 
     return (
         <div>
